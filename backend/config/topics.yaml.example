@@ -1,0 +1,246 @@
+live_social:
+  refresh_interval_seconds: 30
+  interleaved_limit: 24
+  sources:
+    - source_id: mastodon
+      type: mastodon
+      name: Mastodon
+      icon: "🐘"
+      enabled: true
+      topic: ai
+      instance_base_url: https://mastodon.social
+      tags:
+        - ai
+        - llm
+        - machinelearning
+        - openai
+        - anthropic
+      max_tags: 3
+      limit_per_tag: 8
+      max_items: 6
+
+    - source_id: bluesky
+      type: bluesky_api
+      name: Bluesky
+      icon: "🦋"
+      enabled: true
+      topic: ai
+      base_url: https://public.api.bsky.app
+      handles:
+        - karpathy.bsky.social
+        - simonwillison.net
+        - howard.fm
+        - sebastianraschka.com
+        - cvondrick.bsky.social
+        - stefanroth.bsky.social
+        - arxiv-cs-cv.bsky.social
+        - francois.fleuret.org
+        - hannes-stark.bsky.social
+        - zicokolter.bsky.social
+        - jfrankle.com
+        - yaringal.bsky.social
+        - natanielruiz.bsky.social
+        - colah.bsky.social
+        - sedielem.bsky.social
+        - laurentdinh.bsky.social
+        - phillipisola.bsky.social
+      max_handles: 3
+      limit_per_request: 10
+      max_items: 6
+
+    - source_id: reddit
+      type: reddit
+      name: Reddit
+      icon: "👽"
+      enabled: true
+      topic: ai
+      subreddits:
+        - MachineLearning
+        - LocalLLaMA
+        - OpenAI
+        - singularity
+      sort: new
+      max_subreddits: 3
+      limit_per_subreddit: 10
+      max_items: 6
+
+    - source_id: hackernews
+      type: hackernews
+      name: Hacker News
+      icon: "🟧"
+      enabled: true
+      topic: ai
+      queries:
+        - llm
+        - openai
+        - anthropic
+        - inference
+        - agents
+      max_queries: 4
+      hits_per_query: 10
+      max_items: 6
+
+topics:
+  - topic_id: mets_live
+    name: Mets Live
+    icon: "⚾"
+    default_tts_mode: full_page
+    max_items: 30
+    sources:
+      - source_id: mets_rss
+        name: MLB Mets News
+        adapter: mlb
+        url: https://www.mlb.com/mets/feeds/news/rss.xml
+
+  - topic_id: arxiv_cv
+    name: arXiv cs.CV
+    icon: "📄"
+    default_tts_mode: summary
+    max_items: 40
+    sources:
+      - source_id: arxiv_cv_rss
+        name: arXiv cs.CV
+        adapter: arxiv
+        url: https://export.arxiv.org/rss/cs.CV
+
+  - topic_id: ai_llm
+    name: AI / LLM Radar
+    icon: "📡"
+    default_tts_mode: summary
+    max_items: 120
+    sources:
+      - source_id: openai_news
+        name: OpenAI News
+        adapter: rss
+        url: https://openai.com/news/rss.xml
+      - source_id: hf_blog
+        name: Hugging Face Blog
+        adapter: rss
+        url: https://huggingface.co/blog/feed.xml
+      - source_id: simon_everything
+        name: Simon Willison (everything)
+        adapter: rss
+        url: https://simonwillison.net/atom/everything/
+      - source_id: latent_space
+        name: Latent Space (Substack feed)
+        adapter: rss
+        url: https://www.latent.space/feed
+      - source_id: latent_space_podcast
+        name: Latent Space podcast
+        adapter: rss
+        url: https://rss.art19.com/latent-space-ai
+      - source_id: theregister_ai_ml
+        name: The Register AI/ML
+        adapter: rss
+        url: https://www.theregister.com/software/ai_ml/headlines.atom
+
+      - source_id: arxiv_cs_cl
+        name: arXiv cs.CL
+        adapter: arxiv
+        url: https://arxiv.org/rss/cs.CL
+      - source_id: arxiv_cs_ai
+        name: arXiv cs.AI
+        adapter: arxiv
+        url: https://arxiv.org/rss/cs.AI
+      - source_id: arxiv_cs_lg
+        name: arXiv cs.LG
+        adapter: arxiv
+        url: https://arxiv.org/rss/cs.LG
+      - source_id: arxiv_stat_ml
+        name: arXiv stat.ML
+        adapter: arxiv
+        url: https://arxiv.org/rss/stat.ML
+
+      - source_id: gh_vllm
+        name: vLLM
+        adapter: rss
+        url: https://github.com/vllm-project/vllm/releases.atom
+      - source_id: gh_llamacpp
+        name: llama.cpp
+        adapter: rss
+        url: https://github.com/ggerganov/llama.cpp/releases.atom
+      - source_id: gh_ollama
+        name: Ollama
+        adapter: rss
+        url: https://github.com/ollama/ollama/releases.atom
+      - source_id: gh_transformers
+        name: Transformers
+        adapter: rss
+        url: https://github.com/huggingface/transformers/releases.atom
+      - source_id: gh_litellm
+        name: LiteLLM
+        adapter: rss
+        url: https://github.com/BerriAI/litellm/releases.atom
+      - source_id: gh_langchain
+        name: LangChain
+        adapter: rss
+        url: https://github.com/langchain-ai/langchain/releases.atom
+      - source_id: gh_llamaindex
+        name: LlamaIndex
+        adapter: rss
+        url: https://github.com/run-llama/llama_index/releases.atom
+
+      - source_id: ollama_models_atom
+        name: Ollama new models (Atom feed)
+        adapter: rss
+        url: https://simonw.github.io/ollama-models-atom-feed/feed.xml
+
+      # Scrape targets from rowbot-agents. Kept in config for parity; disabled until a web-page facade is added.
+      - source_id: anthropic_news
+        name: Anthropic News
+        adapter: rss
+        enabled: false
+        url: https://www.anthropic.com/news
+      - source_id: anthropic_engineering
+        name: Anthropic Engineering
+        adapter: rss
+        enabled: false
+        url: https://www.anthropic.com/engineering
+      - source_id: deepmind_blog
+        name: Google DeepMind News
+        adapter: rss
+        enabled: false
+        url: https://deepmind.google/blog/
+      - source_id: mistral_news
+        name: Mistral News
+        adapter: rss
+        enabled: false
+        url: https://mistral.ai/news
+      - source_id: ai_meta_blog
+        name: AI at Meta Blog
+        adapter: rss
+        enabled: false
+        url: https://ai.meta.com/blog/
+      - source_id: crfm_blog
+        name: Stanford CRFM Blog
+        adapter: rss
+        enabled: false
+        url: https://crfm.stanford.edu/blog.html
+      - source_id: google_research_blog
+        name: Google Research Blog
+        adapter: rss
+        enabled: false
+        url: https://research.google/blog/
+
+  - topic_id: news_live
+    name: News
+    icon: "🗞"
+    default_tts_mode: full_page
+    max_items: 40
+    sources:
+      - source_id: npr_news
+        name: NPR News
+        adapter: rss
+        url: https://feeds.npr.org/1001/rss.xml
+      - source_id: ap_top
+        name: AP Top News
+        adapter: rss
+        url: https://news.google.com/rss/search?q=site:apnews.com&hl=en-US&gl=US&ceid=US:en
+      - source_id: guardian_world
+        name: The Guardian World
+        adapter: rss
+        url: https://www.theguardian.com/world/rss
+      - source_id: pbs_newshour
+        name: PBS NewsHour
+        adapter: rss
+        url: https://www.pbs.org/newshour/feeds/rss/headlines
